@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Hello Again
+GenericName=Hello World App
+Comment=Proves tha we can use Vala and Gtk
+Catagories=Utility;Education;
+Exec=com.github.eurekaalgorithm.helloworldagain
+Icon=application-default-icon
+Terminal=false
+Type=Application
+Keywords=Hello;World;Example;
