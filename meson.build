@@ -1,6 +1,12 @@
 #project name and programming language
 project('com.github.eurekaalgorithm.helloworldagain', 'vala', 'c')
 
+#Includes translations module
+i18n = import('i18n')
+
+#Set our translation domain
+add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language: 'c')
+
 #create a new executable, list the files I want to compile, list the dependencies 
 
 executable(
@@ -12,14 +18,22 @@ executable(
 	install: true
 )
 
-#install my .desktop file so the Applications Menue will see it
-install_data(
-	join_paths('data',meson.project_name()+ '.desktop'),
+#Translate and install our .desktop file
+i18n.merge_file(
+	input: join_paths('data', meson.project_name() + '.desktop.in'),
+	output: meson.project_name() + '.desktop',
+	po_dir: join_paths(meson.source_root() , 'po'),
+	type: 'desktop',
+	install: true,
 	install_dir: join_paths(get_option('datadir'), 'applications')
 )
 
-#install the .appdata.xml file so AppCenter will see it
-install_data(
-	join_paths('data', meson.project_name() + '.appdata.xml'),
+#Translate and install our .appdata file
+i18n.merge_file(
+	input: join_paths('data', meson.project_name() + '.appdata.xml.in'),
+	output: meson.project_name() + '.appdata.xml',
+	po_dir: meson.source_root(), 'po'),
+	install: true,
 	install_dir: join_paths(get_option('datadir'), 'metainfo')
-)
+
+subdir('po')
