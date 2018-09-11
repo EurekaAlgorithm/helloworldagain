@@ -22,6 +22,7 @@
 
 public class MyApp : Gtk.Application {
 
+
         public MyApp(){
                 Object(
                         application_id: "com.github.eurekaalgorithm.helloworld",
@@ -34,12 +35,23 @@ protected override void activate () {
         var label = new Gtk.Label (_("Hello again world!"));
         label.margin = 20;
 
+	var grid = new Gtk.Grid ();
+	grid.orientation = Gtk.Orientation.VERTICAL;
+
+		grid.add (new Gtk.Label (_("Label 1")));
+		grid.add (new Gtk.Label (_("Label 2")));
+
+
+
         var main_window = new Gtk.ApplicationWindow (this);
         main_window.default_height = 600;
         main_window.default_width = 600;
         main_window.title = "Hello World!";
-	main_window.add (label);
-        main_window.show_all();
+	
+	main_window.add (grid);
+	//main_window.add (label);
+        
+	main_window.show_all();
         }
 
 public static int main (string[] args){
