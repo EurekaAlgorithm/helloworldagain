@@ -31,7 +31,7 @@ public class MyApp : Gtk.Application {
 
 protected override void activate () {
 
-        var label = new Gtk.Label _(("Hello again world!"));
+        var label = new Gtk.Label (_("Hello again world!"));
         label.margin = 20;
 
         var main_window = new Gtk.ApplicationWindow (this);
