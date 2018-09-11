@@ -38,8 +38,14 @@ protected override void activate () {
 	var grid = new Gtk.Grid ();
 	grid.orientation = Gtk.Orientation.VERTICAL;
 
-		grid.add (new Gtk.Label (_("Label 1")));
-		grid.add (new Gtk.Label (_("Label 2")));
+	grid.add (new Gtk.Label (_("Label 1")));
+	grid.add (new Gtk.Label (_("Label 2")));
+	grid.row_spacing = 6;
+	
+	var button = new Gtk.Button.with_label (_("Click me!"));
+	var label2 = new Gtk.Label (null);
+	grid.add (button);
+	grid.add (label2);
 
 
 
@@ -49,10 +55,15 @@ protected override void activate () {
         main_window.title = "Hello World!";
 	
 	main_window.add (grid);
+	
+	button.clicked.connect (() => {
+		label2.label = _("Aloha World!");
+		button.sensitive = false;
+	});
 	//main_window.add (label);
         
 	main_window.show_all();
-        }
+}
 
 public static int main (string[] args){
         var app = new MyApp();
